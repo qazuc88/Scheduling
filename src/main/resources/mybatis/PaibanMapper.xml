@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paiban.Domain.Repository.PaibanMapper">
+  <resultMap id="BaseResultMap" type="com.paiban.entity.Paiban">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="PeopleName" jdbcType="VARCHAR" property="peopleName" />
+    <result column="Month" jdbcType="INTEGER" property="month" />
+    <result column="Day" jdbcType="INTEGER" property="day" />
+    <result column="Year" jdbcType="INTEGER" property="year" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="Date" jdbcType="DATE" property="date" />
+    <result column="ISDELETE" jdbcType="BIT" property="ISDELETE" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    Id, PeopleName, Month, Day, Year, Remark, Date, ISDELETE
+  </sql>
+  <select id="selectByExample" parameterType="com.paiban.entity.PaibanExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from paiban
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from paiban
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKeyWithLogicalDelete" parameterType="map" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from paiban
+    where Id = #{id,jdbcType=INTEGER}
+      and ISDELETE = 
+    <choose>
+      <when test="andLogicalDeleted">
+        '1'
+      </when>
+      <otherwise>
+        '0'
+      </otherwise>
+    </choose>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    delete from paiban
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.paiban.entity.PaibanExample">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    delete from paiban
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.paiban.entity.Paiban">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    insert into paiban (Id, PeopleName, Month, 
+      Day, Year, Remark, 
+      Date, ISDELETE)
+    values (#{id,jdbcType=INTEGER}, #{peopleName,jdbcType=VARCHAR}, #{month,jdbcType=INTEGER}, 
+      #{day,jdbcType=INTEGER}, #{year,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{date,jdbcType=DATE}, #{ISDELETE,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.paiban.entity.Paiban">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    insert into paiban
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="peopleName != null">
+        PeopleName,
+      </if>
+      <if test="month != null">
+        Month,
+      </if>
+      <if test="day != null">
+        Day,
+      </if>
+      <if test="year != null">
+        Year,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="date != null">
+        Date,
+      </if>
+      <if test="ISDELETE != null">
+        ISDELETE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="peopleName != null">
+        #{peopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="ISDELETE != null">
+        #{ISDELETE,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.paiban.entity.PaibanExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    select count(*) from paiban
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update paiban
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.peopleName != null">
+        PeopleName = #{record.peopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.month != null">
+        Month = #{record.month,jdbcType=INTEGER},
+      </if>
+      <if test="record.day != null">
+        Day = #{record.day,jdbcType=INTEGER},
+      </if>
+      <if test="record.year != null">
+        Year = #{record.year,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null">
+        Date = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.ISDELETE != null">
+        ISDELETE = #{record.ISDELETE,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update paiban
+    set Id = #{record.id,jdbcType=INTEGER},
+      PeopleName = #{record.peopleName,jdbcType=VARCHAR},
+      Month = #{record.month,jdbcType=INTEGER},
+      Day = #{record.day,jdbcType=INTEGER},
+      Year = #{record.year,jdbcType=INTEGER},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      Date = #{record.date,jdbcType=DATE},
+      ISDELETE = #{record.ISDELETE,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.paiban.entity.Paiban">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update paiban
+    <set>
+      <if test="peopleName != null">
+        PeopleName = #{peopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        Month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        Day = #{day,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        Year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        Date = #{date,jdbcType=DATE},
+      </if>
+      <if test="ISDELETE != null">
+        ISDELETE = #{ISDELETE,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.paiban.entity.Paiban">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update paiban
+    set PeopleName = #{peopleName,jdbcType=VARCHAR},
+      Month = #{month,jdbcType=INTEGER},
+      Day = #{day,jdbcType=INTEGER},
+      Year = #{year,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      Date = #{date,jdbcType=DATE},
+      ISDELETE = #{ISDELETE,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="logicalDeleteByExample" parameterType="map">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update paiban set ISDELETE = 1
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="logicalDeleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Mon Oct 29 03:57:55 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update paiban set ISDELETE = 1
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
