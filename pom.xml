@@ -9,7 +9,7 @@
 	<name>paiban Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<jackson.version>2.8.5</jackson.version>
+		<jackson.version>2.8.11.3</jackson.version>
 		<shiro.version>1.4.0</shiro.version>
 	</properties>
 	<dependencies>
